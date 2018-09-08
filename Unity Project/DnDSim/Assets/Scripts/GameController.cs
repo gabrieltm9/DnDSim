@@ -36,12 +36,12 @@ public class GameController : MonoBehaviour {
             if (isCharacterSheetUIOpen)
             {
                 characterSheetUI.GetComponent<Animator>().Play("FadeIn");
-                characterSheetUI.transform.GetChild(3).GetComponent<ParticleSystem>().Play();
+                characterSheetUI.transform.GetChild(4).GetComponent<ParticleSystem>().Play();
             }
             else
             {
                 characterSheetUI.GetComponent<Animator>().Play("FadeOut");
-                characterSheetUI.transform.GetChild(3).GetComponent<ParticleSystem>().Stop();
+                characterSheetUI.transform.GetChild(4).GetComponent<ParticleSystem>().Stop();
                 //characterSheetUI.transform.GetChild(3).GetComponent<ParticleSystem>().Clear();
             }
             startTransitioning = true;
