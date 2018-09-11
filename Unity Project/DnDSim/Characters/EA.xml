@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>EA</name>
+  <maxHealth>12</maxHealth>
+  <currentHealth>0</currentHealth>
+  <spells>
+    <string>warding wind</string>
+    <string>fiReball</string>
+    <string>wall of frost</string>
+    <string>wish</string>
+  </spells>
+</Character>

@@ -36,13 +36,13 @@ public class GameController : MonoBehaviour {
             if (isCharacterSheetUIOpen)
             {
                 characterSheetUI.GetComponent<Animator>().Play("FadeIn");
-                characterSheetUI.transform.GetChild(4).GetComponent<ParticleSystem>().Play();
+                characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Play();
             }
             else
             {
                 characterSheetUI.GetComponent<Animator>().Play("FadeOut");
-                characterSheetUI.transform.GetChild(4).GetComponent<ParticleSystem>().Stop();
-                //characterSheetUI.transform.GetChild(3).GetComponent<ParticleSystem>().Clear();
+                characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
+                //characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Clear();
             }
             startTransitioning = true;
         }
@@ -75,5 +75,11 @@ public class GameController : MonoBehaviour {
             StartCoroutine(isTransitioningTimer());
             startTransitioning = false;
         }
+    }
+
+    public void closeApp()
+    {
+        characterSheetUI.GetComponent<CharacterSheetController>().serializeCharacters();
+        Application.Quit();
     }
 }
