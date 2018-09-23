@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\MainUIController.cs" />
     <Compile Include="Assets\Scripts\SpellReferenceScript.cs" />
+    <Compile Include="Assets\Scripts\SqlManager.cs" />
     <Compile Include="Assets\Scripts\XMLSerializer.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Game Stuff/Game Making/DnD/DnDSim/Unity Project/DnDSim/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -278,11 +279,20 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.6f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data">
+      <HintPath>D:/Game Stuff/Game Making/DnD/DnDSim/Unity Project/DnDSim/Assets/Plugins/System.Data.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/gabri/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/gabri/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>D:/Game Stuff/Game Making/DnD/DnDSim/Unity Project/DnDSim/Assets/Plugins/MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web">
+      <HintPath>D:/Game Stuff/Game Making/DnD/DnDSim/Unity Project/DnDSim/Assets/Plugins/MySql.Web.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

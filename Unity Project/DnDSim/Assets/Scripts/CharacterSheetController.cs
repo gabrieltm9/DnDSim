@@ -124,7 +124,7 @@ public class CharacterSheetController : MonoBehaviour
             }
             else
             {
-                fixedName += array[x].ToString();
+                fixedName += array[x].ToString(); //Hi_Moaoma_to_Owlol
             }
         }
         array = fixedName.ToCharArray();
