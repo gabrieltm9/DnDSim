@@ -6,14 +6,17 @@ public class GameController : MonoBehaviour {
 
     public bool startTransitioning;
     public bool isTransitioning;
+
     public static bool isMainUIOpen = true;
     public static GameObject mainUI;
     public static bool isCharacterSheetUIOpen;
     public static GameObject characterSheetUI;
+    public bool isDatabaseUIOpen;
+    public GameObject databaseUI;
 
 	// Use this for initialization
 	void Start () {
-		
+        databaseUI.GetComponent<DatabaseUIController>().updateSpellsDatabase();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +26,11 @@ public class GameController : MonoBehaviour {
             if (isCharacterSheetUIOpen)
             {
                 toggleCharacterSheetUI();
+                toggleMainUI();
+            }
+            if (isDatabaseUIOpen)
+            {
+                toggleDatabaseUI();
                 toggleMainUI();
             }
         }
@@ -43,6 +51,25 @@ public class GameController : MonoBehaviour {
                 characterSheetUI.GetComponent<Animator>().Play("FadeOut");
                 characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
                 //characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Clear();
+            }
+            startTransitioning = true;
+        }
+    }
+
+    public void toggleDatabaseUI()
+    {
+        if (!isTransitioning)
+        {
+            isDatabaseUIOpen = !isDatabaseUIOpen;
+            if (isDatabaseUIOpen)
+            {
+                databaseUI.GetComponent<Animator>().Play("FadeIn");
+                //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Play(); No particle system, keeping this code in case we add one
+            }
+            else
+            {
+                databaseUI.GetComponent<Animator>().Play("FadeOut");
+                //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
             }
             startTransitioning = true;
         }
