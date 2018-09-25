@@ -319,10 +319,12 @@
     <Compile Include="Assets\Scripts\DatabaseUIController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\MainUIController.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\SpellInfo.cs" />
     <Compile Include="Assets\Scripts\SpellReferenceScript.cs" />
     <Compile Include="Assets\Scripts\SqlManager.cs" />
+    <Compile Include="Assets\Scripts\TokenScript.cs" />
     <Compile Include="Assets\Scripts\XMLSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
