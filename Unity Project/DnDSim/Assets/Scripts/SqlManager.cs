@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+//using MySql.Data;
+//using MySql.Data.MySqlClient;
 
-public class SqlManager : MonoBehaviour {
+/*public class SqlManager : MonoBehaviour {
 
-    static string connectionString = "Server=dndsimsql.mysql.database.azure.com; Port=3306; Database=spells; Uid=tunabandit@dndsimsql; Pwd=Iteam2015;";
-
+    
     public static void testAddSpell(string spellName, string spellRange)
     {
         MySqlConnection dbConnection = new MySqlConnection(connectionString);
@@ -26,4 +25,4 @@ public class SqlManager : MonoBehaviour {
             Debug.LogWarning(_exception.ToString());
         }
     }
-}
+}*/

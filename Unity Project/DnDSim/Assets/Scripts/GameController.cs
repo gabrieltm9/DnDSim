@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
             Directory.CreateDirectory(Application.persistentDataPath + @"/Characters/");
             Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/");
             Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/Custom Spells/");
+            Directory.CreateDirectory(Application.persistentDataPath + @"/Maps/");
             PlayerPrefs.SetInt("isFirstRun", 1);
         }
     }

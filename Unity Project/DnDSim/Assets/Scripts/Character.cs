@@ -11,4 +11,5 @@ public class Character {
     public Sprite background;
 
     public List<string> spells = new List<string>();
+
 }
