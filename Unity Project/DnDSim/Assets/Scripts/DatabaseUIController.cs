@@ -18,7 +18,8 @@ public class DatabaseUIController : MonoBehaviour
 
     public void updateSpellsDatabase()
     {
-        //pullSRDSpells();
+        foreach(Spell spell in GetComponent<DatabaseManager>().srdSpells)
+            addToSRDSpellsScrollView(spell);
     }
 
     /*public void pullSRDSpells() OLD CODE FOR CONNECTING TO THE MySql DATABASE
@@ -40,17 +41,16 @@ public class DatabaseUIController : MonoBehaviour
         {
             Debug.LogWarning(_exception.ToString());
         }
-    }
+    }*/
 
-    void addToSRDSpellsScrollView(string name, string range)
+    void addToSRDSpellsScrollView(Spell spell)
     {
         GameObject spellAdded = Instantiate(spellPrefab, SRDSpellsScrollViewContent.transform);
-        spellAdded.transform.GetChild(0).GetComponent<Text>().text = name;
-        spellAdded.GetComponent<SpellInfo>().spellName = name;
-        spellAdded.GetComponent<SpellInfo>().strRange = range;
-        if (range.IndexOf(" ") > 0)
-            spellAdded.GetComponent<SpellInfo>().intRange = int.Parse(range.Substring(0, (range.IndexOf(" "))));
-    }*/ 
+        spellAdded.transform.GetChild(0).GetComponent<Text>().text = spell.name; //Makes the instantiated button's text display the spell's name
+        spellAdded.GetComponent<SpellInfo>().spellName = spell.name; //Adds the name of the spell
+        spellAdded.GetComponent<SpellInfo>().intRange = spell.range; //Adds the spell's range in int form (ex: 10)
+        spellAdded.GetComponent<SpellInfo>().strRange = spell.range.ToString() + " " + spell.rangeUnit; //Adds the spell's range in string form + it's unit (ex: 10 feet)
+    }
 
     public void openSpecificPage(GameObject page)
     {

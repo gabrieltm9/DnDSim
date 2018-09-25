@@ -19,6 +19,7 @@ public class Spell {
     public bool vComponent; //If it uses verbal components
     public bool sComponent; //If it uses semantic components
     public bool mComponent; //If it uses material components
+    public bool cComponent; //If it requires concentration
     public string componentDescription; //Ex: A tiny ball of bat guano and sulfur
 
     public int baseNumberOfDamageDice; //Ex: In 8d6, this would be the 8
@@ -34,7 +35,11 @@ public class Spell {
     public string school; //One of 8: Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, and Transmutation
     public List<string> lists; //Ex: Wizard, Bard, Hexblade, etc
 
-    public Spell(string name, int level, string description, int range, string rangeUnit, int effectRange, string effectRangeUnit, int numberOfTargets, bool vComponent, bool sComponent, bool mComponent, string componentDescription, int baseNumberOfDamageDice, int typeOfDamageDice, int diceNumberSpellSlotIncrease, int spellDuration, string spellDurationUnit, int castingTime, string castingTimeUnit, string school, List<string> lists)
+    public bool isRitual; //If this spell is a ritual
+
+    public string savingThrow; //One of 6: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma
+
+    public Spell(string name, int level, string description, int range, string rangeUnit, int effectRange, string effectRangeUnit, int numberOfTargets, bool vComponent, bool sComponent, bool mComponent, bool cComponent, string componentDescription, int baseNumberOfDamageDice, int typeOfDamageDice, int diceNumberSpellSlotIncrease, int spellDuration, string spellDurationUnit, int castingTime, string castingTimeUnit, string school, List<string> lists, bool isRitual, string savingThrow)
     {
         this.name = name;
         this.range = range;
@@ -46,6 +51,7 @@ public class Spell {
         this.vComponent = vComponent;
         this.sComponent = sComponent;
         this.mComponent = mComponent;
+        this.cComponent = cComponent;
         this.componentDescription = componentDescription;
         this.baseNumberOfDamageDice = baseNumberOfDamageDice;
         this.typeOfDamageDice = typeOfDamageDice;
@@ -56,6 +62,8 @@ public class Spell {
         this.castingTimeUnit = castingTimeUnit;
         this.school = school;
         this.lists = lists;
+        this.isRitual = isRitual;
+        this.savingThrow = savingThrow;
     }
 
     public Spell()
