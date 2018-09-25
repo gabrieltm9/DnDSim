@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class GameController : MonoBehaviour {
 
@@ -14,8 +15,19 @@ public class GameController : MonoBehaviour {
     public bool isDatabaseUIOpen;
     public GameObject databaseUI;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("isFirstRun") == 0) //Creates folders for storing game info if this is the first time the game is being booted
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + @"/Characters/");
+            Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/");
+            Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/Custom Spells/");
+            PlayerPrefs.SetInt("isFirstRun", 1);
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
         databaseUI.GetComponent<DatabaseUIController>().updateSpellsDatabase();
 	}
 	

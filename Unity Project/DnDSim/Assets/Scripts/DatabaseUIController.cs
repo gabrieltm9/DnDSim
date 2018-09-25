@@ -10,31 +10,18 @@ public class DatabaseUIController : MonoBehaviour
 {
     public GameObject gameController;
     public GameObject currentlyOpenPage;
-    string connectionString = "Server=dndsimsql.mysql.database.azure.com; Port=3306; Database=spells; Uid=tunabandit@dndsimsql; Pwd=Iteam2015;";
 
     public GameObject spellPrefab;
     public GameObject SRDSpellsScrollViewContent;
 
     public bool isTransitioning;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void updateSpellsDatabase()
     {
-        pullSRDSpells();
+        //pullSRDSpells();
     }
 
-    public void pullSRDSpells()
+    /*public void pullSRDSpells() OLD CODE FOR CONNECTING TO THE MySql DATABASE
     {
         MySqlConnection dbConnection = new MySqlConnection(connectionString);
         try
@@ -63,7 +50,7 @@ public class DatabaseUIController : MonoBehaviour
         spellAdded.GetComponent<SpellInfo>().strRange = range;
         if (range.IndexOf(" ") > 0)
             spellAdded.GetComponent<SpellInfo>().intRange = int.Parse(range.Substring(0, (range.IndexOf(" "))));
-    }
+    }*/ 
 
     public void openSpecificPage(GameObject page)
     {
