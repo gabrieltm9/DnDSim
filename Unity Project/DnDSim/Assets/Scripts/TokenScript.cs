@@ -10,7 +10,7 @@ public class TokenScript : MonoBehaviour {
 
     private void Start()
     {
-        character = transform.parent.gameObject.GetComponent<Character>();
+        //character = transform.parent.gameObject.GetComponent<Character>(); Look at CharacterDataScript. The character class isnt something we should add to gameObjects but rather use to make objects in code
     }
 
     private void OnMouseDown()//clicking on token enables and disables the character sheet

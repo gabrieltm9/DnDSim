@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour {
             if (isCharacterSheetUIOpen)
             {
                 toggleCharacterSheetUI();
-                toggleMainUI();
+                toggleMainUI(); 
             }
             if (isDatabaseUIOpen)
             {
@@ -56,6 +56,7 @@ public class GameController : MonoBehaviour {
             isCharacterSheetUIOpen = !isCharacterSheetUIOpen;
             if (isCharacterSheetUIOpen)
             {
+                characterSheetUI.SetActive(true);
                 characterSheetUI.GetComponent<Animator>().Play("FadeIn");
                 characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Play();
             }
@@ -63,6 +64,7 @@ public class GameController : MonoBehaviour {
             {
                 characterSheetUI.GetComponent<Animator>().Play("FadeOut");
                 characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
+                StartCoroutine(isTransitioningTimer(characterSheetUI));
                 //characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Clear();
             }
             startTransitioning = true;
@@ -76,12 +78,14 @@ public class GameController : MonoBehaviour {
             isDatabaseUIOpen = !isDatabaseUIOpen;
             if (isDatabaseUIOpen)
             {
+                databaseUI.SetActive(true);
                 databaseUI.GetComponent<Animator>().Play("FadeIn");
                 //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Play(); No particle system, keeping this code in case we add one
             }
             else
             {
                 databaseUI.GetComponent<Animator>().Play("FadeOut");
+                StartCoroutine(isTransitioningTimer(databaseUI));
                 //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
             }
             startTransitioning = true;
@@ -106,6 +110,12 @@ public class GameController : MonoBehaviour {
         isTransitioning = true;
         yield return new WaitForSeconds(1);
         isTransitioning = false;
+    }
+
+    public static IEnumerator isTransitioningTimer(GameObject objToDisableAfterTimer)
+    {
+        yield return new WaitForSeconds(1);
+        objToDisableAfterTimer.SetActive(false);
     }
 
     public void LateUpdate()
