@@ -10,6 +10,7 @@ public class DatabaseUIController : MonoBehaviour
 {
     public GameObject gameController;
     public GameObject currentlyOpenPage;
+    public GameObject currentlyOpenSubPage;
 
     public GameObject spellPrefab;
     public GameObject SRDSpellsScrollViewContent;
@@ -60,6 +61,16 @@ public class DatabaseUIController : MonoBehaviour
         {
             currentlyOpenPage.SetActive(false);
             currentlyOpenPage = page;
+            page.SetActive(true);
+        }
+    }
+
+    public void openSpecificSubPage(GameObject page) //Ex: Tabs inside of the Create page
+    {
+        if (currentlyOpenSubPage != page)
+        {
+            currentlyOpenSubPage.SetActive(false);
+            currentlyOpenSubPage = page;
             page.SetActive(true);
         }
     }
