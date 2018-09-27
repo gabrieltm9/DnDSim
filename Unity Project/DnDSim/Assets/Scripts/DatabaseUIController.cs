@@ -14,6 +14,8 @@ public class DatabaseUIController : MonoBehaviour
     public GameObject spellPrefab;
     public GameObject SRDSpellsScrollViewContent;
 
+    public GameObject mainPage;
+
     public bool isTransitioning;
 
     public void updateSpellsDatabase()
@@ -60,5 +62,13 @@ public class DatabaseUIController : MonoBehaviour
             currentlyOpenPage = page;
             page.SetActive(true);
         }
+    }
+
+    public void openDatabaseUI()
+    {
+        if(currentlyOpenPage != null)
+            currentlyOpenPage.SetActive(false);
+        currentlyOpenPage = mainPage;
+        mainPage.SetActive(true);
     }
 }

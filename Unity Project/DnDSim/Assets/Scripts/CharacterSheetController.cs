@@ -32,7 +32,6 @@ public class CharacterSheetController : MonoBehaviour
     void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController");
-        GameController.characterSheetUI = gameObject;
         foreach(Character charac in characters)
         {
             Debug.Log(charac.name);
@@ -270,6 +269,14 @@ public class CharacterSheetController : MonoBehaviour
             currentlyOpenPage = page;
             updateSpecificPage(page);
         }
+    }
+
+    public void openCharacterSheetUI()
+    {
+        if (currentlyOpenPage != null)
+            currentlyOpenPage.SetActive(false);
+        currentlyOpenPage = mainPage;
+        mainPage.SetActive(true);
     }
 
     public void serializeCharacters()

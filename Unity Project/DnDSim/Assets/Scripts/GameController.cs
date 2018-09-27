@@ -7,11 +7,12 @@ public class GameController : MonoBehaviour {
 
     public bool startTransitioning;
     public bool isTransitioning;
+    public GameObject uiObjToDisable; 
 
     public static bool isMainUIOpen = true;
     public static GameObject mainUI;
     public static bool isCharacterSheetUIOpen;
-    public static GameObject characterSheetUI;
+    public GameObject characterSheetUI;
     public bool isDatabaseUIOpen;
     public GameObject databaseUI;
 
@@ -59,12 +60,13 @@ public class GameController : MonoBehaviour {
                 characterSheetUI.SetActive(true);
                 characterSheetUI.GetComponent<Animator>().Play("FadeIn");
                 characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Play();
+                characterSheetUI.GetComponent<CharacterSheetController>().openCharacterSheetUI();
             }
             else
             {
                 characterSheetUI.GetComponent<Animator>().Play("FadeOut");
                 characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
-                StartCoroutine(isTransitioningTimer(characterSheetUI));
+                uiObjToDisable = characterSheetUI;
                 //characterSheetUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Clear();
             }
             startTransitioning = true;
@@ -80,12 +82,13 @@ public class GameController : MonoBehaviour {
             {
                 databaseUI.SetActive(true);
                 databaseUI.GetComponent<Animator>().Play("FadeIn");
+                databaseUI.GetComponent<DatabaseUIController>().openDatabaseUI();
                 //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Play(); No particle system, keeping this code in case we add one
             }
             else
             {
                 databaseUI.GetComponent<Animator>().Play("FadeOut");
-                StartCoroutine(isTransitioningTimer(databaseUI));
+                uiObjToDisable = databaseUI;
                 //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
             }
             startTransitioning = true;
@@ -98,9 +101,15 @@ public class GameController : MonoBehaviour {
         {
             isMainUIOpen = !isMainUIOpen;
             if (isMainUIOpen)
+            {
+                mainUI.SetActive(true);
                 mainUI.GetComponent<Animator>().Play("FadeIn");
+            }
             else
+            {
                 mainUI.GetComponent<Animator>().Play("FadeOut");
+                uiObjToDisable = mainUI;
+            }
             startTransitioning = true;
         }
     }
@@ -109,13 +118,12 @@ public class GameController : MonoBehaviour {
     {
         isTransitioning = true;
         yield return new WaitForSeconds(1);
+        if(uiObjToDisable != null)
+        {
+            uiObjToDisable.SetActive(false);
+            uiObjToDisable = null;
+        }
         isTransitioning = false;
-    }
-
-    public static IEnumerator isTransitioningTimer(GameObject objToDisableAfterTimer)
-    {
-        yield return new WaitForSeconds(1);
-        objToDisableAfterTimer.SetActive(false);
     }
 
     public void LateUpdate()
