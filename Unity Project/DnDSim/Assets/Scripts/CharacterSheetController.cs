@@ -77,7 +77,7 @@ public class CharacterSheetController : MonoBehaviour
         }
     }
 
-    IEnumerator AddSpellToList(string name, Character character)
+    /*IEnumerator AddSpellToList(string name, Character character)
     {
         UnityWebRequest www = UnityWebRequest.Get("http://dnd5e.wikia.com/wiki/" + fixSpellName(name));
         yield return www.SendWebRequest();
@@ -105,6 +105,11 @@ public class CharacterSheetController : MonoBehaviour
             else
                 str = "Could not find spell by that name";
         }
+    }*/
+
+    public void AddSpellToList(Spell spell, Character character, string list)
+    {
+
     }
 
     public string fixSpellName(string str) //Properly formulates the spell's name so it can be
@@ -123,7 +128,7 @@ public class CharacterSheetController : MonoBehaviour
             }
             else
             {
-                fixedName += array[x].ToString(); //Hi_Moaoma_to_Owlol
+                fixedName += array[x].ToString();
             }
         }
         array = fixedName.ToCharArray();
@@ -235,18 +240,13 @@ public class CharacterSheetController : MonoBehaviour
         {
             GameObject content = currentlyOpenPage.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
             content.GetComponent<RectTransform>().offsetMin = new Vector2(content.GetComponent<RectTransform>().offsetMin.x, -80);
-            foreach (string spell in characterBeingEdited.spells)
+            foreach (List<Spell> list in characterBeingEdited.spellLists)
             {
-                GameObject newSpell = Instantiate(spellForSpellListPrefab, content.transform);
-                newSpell.GetComponent<Text>().text = spell;
-                if (content.transform.childCount > 1)
-                    newSpell.transform.localPosition = new Vector3(newSpell.transform.localPosition.x, content.transform.GetChild(content.transform.childCount - 2).transform.localPosition.y - 60, newSpell.transform.localPosition.z);
-                //Spells Shifter (expands the viewer and shifts spells up accordingly)
-                //content.GetComponent<RectTransform>().sizeDelta = new Vector2(content.GetComponent<RectTransform>().sizeDelta.x, content.GetComponent<RectTransform>().sizeDelta.y + 160);
-                content.GetComponent<RectTransform>().offsetMin = new Vector2(content.GetComponent<RectTransform>().offsetMin.x, content.GetComponent<RectTransform>().offsetMin.y - 80);
-                for (int x = 0; x < content.transform.childCount; x++)
+                foreach(Spell spell in list)
                 {
-                    content.transform.GetChild(x).transform.localPosition = new Vector3(content.transform.GetChild(x).transform.localPosition.x, content.transform.GetChild(x).transform.localPosition.y + 20, content.transform.GetChild(x).transform.localPosition.z);
+                    GameObject newSpell = Instantiate(spellForSpellListPrefab, content.transform);
+                    newSpell.GetComponent<SpellInfo>().spell = spell;
+                    newSpell.transform.GetChild(0).GetComponent<Text>().text = spell.name;
                 }
             }
         }
@@ -330,10 +330,10 @@ public class CharacterSheetController : MonoBehaviour
         StartCoroutine(GetSpellDescription(spellObj.GetComponent<Text>().text));
     }
     
-    public void addSpell(InputField input)
+    /*public void addSpell(InputField input)
     {
         StartCoroutine(AddSpellToList(input.text, characterBeingEdited));
-    }
+    }*/
 
     public void newCharacter()
     {

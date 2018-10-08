@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\SpellReferenceScript.cs" />
     <Compile Include="Assets\Scripts\SqlManager.cs" />
     <Compile Include="Assets\Scripts\TokenScript.cs" />
+    <Compile Include="Assets\Scripts\UIToggleObjScript.cs" />
     <Compile Include="Assets\Scripts\XMLSerializer.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Game Stuff/Game Making/DnD/DnDSim/Unity Project/DnDSim/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

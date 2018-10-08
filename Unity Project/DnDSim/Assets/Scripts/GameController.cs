@@ -138,6 +138,7 @@ public class GameController : MonoBehaviour {
     public void closeApp()
     {
         characterSheetUI.GetComponent<CharacterSheetController>().serializeCharacters();
+        databaseUI.GetComponent<DatabaseManager>().serializeSpellLists();
         Application.Quit();
     }
 }

@@ -10,6 +10,5 @@ public class Character {
 
     public Sprite background;
 
-    public List<string> spells = new List<string>();
-
+    public List<List<Spell>> spellLists = new List<List<Spell>>();
 }

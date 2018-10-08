@@ -35,4 +35,9 @@ public class DatabaseManager : MonoBehaviour {
             
         }
     }
+
+    public void serializeSpellLists()
+    {
+        XMLSerializer.Serialize(srdSpells, Application.persistentDataPath + @"/Spells/srdspells.xml");
+    }
 }
