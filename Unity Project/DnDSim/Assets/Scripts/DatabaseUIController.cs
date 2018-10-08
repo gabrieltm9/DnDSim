@@ -160,19 +160,19 @@ public class DatabaseUIController : MonoBehaviour
         spell.sComponent = createSpellSubPage.transform.GetChild(10).GetComponent<Toggle>().isOn;
         spell.mComponentDescription = createSpellSubPage.transform.GetChild(11).GetChild(1).GetComponent<Text>().text;
 
-        if (int.TryParse(createSpellSubPage.transform.GetChild(15).GetChild(0).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base number of dice has been inputted (if not this would throw an int parsing error)
+        if (int.TryParse(createSpellSubPage.transform.GetChild(14).GetChild(0).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base number of dice has been inputted (if not this would throw an int parsing error)
             spell.baseNumberOfDamageDice = int.Parse(createSpellSubPage.transform.GetChild(15).GetChild(0).GetChild(1).GetComponent<Text>().text);
         else
             Debug.LogWarning("Could not parse spell '" + spell.name + "'s base number of damage dice. Is it missing? Skipping"); //Logs message warning that the spell's base number of damage dice could not be parsed
-        if (int.TryParse(createSpellSubPage.transform.GetChild(15).GetChild(1).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base type of dice has been inputted (if not this would throw an int parsing error)
+        if (int.TryParse(createSpellSubPage.transform.GetChild(14).GetChild(1).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base type of dice has been inputted (if not this would throw an int parsing error)
             spell.typeOfDamageDice = int.Parse(createSpellSubPage.transform.GetChild(15).GetChild(1).GetChild(1).GetComponent<Text>().text);
         else
             Debug.LogWarning("Could not parse spell '" + spell.name + "'s base number of damage dice. Is it missing? Skipping"); //Logs message warning that the spell's base type of damage dice could not be parsed
-        if (int.TryParse(createSpellSubPage.transform.GetChild(15).GetChild(2).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base number of dice has been inputted (if not this would throw an int parsing error)
+        if (int.TryParse(createSpellSubPage.transform.GetChild(14).GetChild(2).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base number of dice has been inputted (if not this would throw an int parsing error)
             spell.diceNumberSpellSlotIncrease = int.Parse(createSpellSubPage.transform.GetChild(15).GetChild(2).GetChild(1).GetComponent<Text>().text);
         else
             Debug.LogWarning("Could not parse spell '" + spell.name + "'s increasing number of damage dice. Is it missing? Skipping"); //Logs message warning that the spell's increasing number of damage dice could not be parsed
-        if (int.TryParse(createSpellSubPage.transform.GetChild(15).GetChild(3).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base type of dice has been inputted (if not this would throw an int parsing error)
+        if (int.TryParse(createSpellSubPage.transform.GetChild(14).GetChild(3).GetChild(1).GetComponent<Text>().text, out temp)) //Checks to see if the base type of dice has been inputted (if not this would throw an int parsing error)
             spell.typeOfDiceSpellSlotIncrease = int.Parse(createSpellSubPage.transform.GetChild(15).GetChild(3).GetChild(1).GetComponent<Text>().text);
         else
             Debug.LogWarning("Could not parse spell '" + spell.name + "'s increasing type of damage dice. Is it missing? Skipping"); //Logs message warning that the spell's increasing type of damage dice could not be parsed
@@ -191,7 +191,7 @@ public class DatabaseUIController : MonoBehaviour
 
         spell.school = createSpellSubPage.transform.GetChild(2).GetChild(0).GetComponent<Text>().text;
 
-        spell.savingThrow = createSpellSubPage.transform.GetChild(16).GetChild(0).GetComponent<Text>().text;
+        spell.savingThrow = createSpellSubPage.transform.GetChild(15).GetChild(0).GetComponent<Text>().text;
 
         //Saves spell
         GetComponent<DatabaseManager>().srdSpells.Add(spell);
