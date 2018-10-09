@@ -21,18 +21,7 @@ public class DatabaseManager : MonoBehaviour {
 
     public void loadSpellFiles()
     {
-        if (srdSpells.Count > 0)
-            srdSpells.Clear();
-        foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath + @"/Spells/SRD Spells/"))
-        {
-            if (file.Substring(file.Length - 4) == ".xml") //If the file is an xml file
-            {
-                Spell spell = XMLSerializer.Deserialize<Spell>(file);
-                if (!srdSpells.Contains(spell))
-                    srdSpells.Add(spell);
-            }
-
-        }
+        srdSpells = XMLSerializer.Deserialize<List<Spell>>(Application.persistentDataPath + @"/Spells/SRDSpells.xml");
         if (customSpells.Count > 0)
             customSpells.Clear();
         foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath + @"/Spells/Custom Spells/"))
@@ -49,17 +38,6 @@ public class DatabaseManager : MonoBehaviour {
 
     public void serializeSpellLists()
     {
-        foreach(Spell spell in srdSpells)
-        {
-            string tempName = "";
-            foreach(char c in spell.name.ToCharArray())
-            {
-                if (c.Equals(' '))
-                    tempName += "_";
-                else
-                    tempName += c;
-            }
-            XMLSerializer.Serialize(spell, Application.persistentDataPath + @"/Spells/SRD Spells/" + tempName + ".xml");
-        }
+        XMLSerializer.Serialize(srdSpells, Application.persistentDataPath + @"/Spells/srdspells.xml");
     }
 }

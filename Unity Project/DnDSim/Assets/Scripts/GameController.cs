@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
 
 public class GameController : MonoBehaviour {
@@ -17,8 +16,6 @@ public class GameController : MonoBehaviour {
     public bool isDatabaseUIOpen;
     public GameObject databaseUI;
 
-    public GameObject messageDisplayerObj;
-
     private void Awake()
     {
         if (PlayerPrefs.GetInt("isFirstRun") == 0) //Creates folders for storing game info if this is the first time the game is being booted
@@ -26,7 +23,6 @@ public class GameController : MonoBehaviour {
             Directory.CreateDirectory(Application.persistentDataPath + @"/Characters/");
             Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/");
             Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/Custom Spells/");
-            Directory.CreateDirectory(Application.persistentDataPath + @"/Spells/SRD Spells/");
             Directory.CreateDirectory(Application.persistentDataPath + @"/Maps/");
             PlayerPrefs.SetInt("isFirstRun", 1);
         }
@@ -144,26 +140,5 @@ public class GameController : MonoBehaviour {
         characterSheetUI.GetComponent<CharacterSheetController>().serializeCharacters();
         databaseUI.GetComponent<DatabaseManager>().serializeSpellLists();
         Application.Quit();
-    }
-
-    public void messageDisplayer(string message, float timeToWaitBetweenFades)
-    {
-        messageDisplayerObj.SetActive(true);
-        messageDisplayerObj.GetComponent<Text>().text = message;
-        messageDisplayerObj.GetComponent<Animator>().Play("FadeInText");
-        StartCoroutine(messageDisplayerWait(timeToWaitBetweenFades));
-    }
-
-    IEnumerator messageDisplayerWait(float timeToWait)
-    {
-        yield return new WaitForSeconds(timeToWait);
-        messageDisplayerObj.GetComponent<Animator>().Play("FadeOutText");
-        StartCoroutine(waitDisableObj(messageDisplayerObj, 3f));
-    }
-
-    IEnumerator waitDisableObj(GameObject objToDisable, float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        objToDisable.SetActive(false);
     }
 }
