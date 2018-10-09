@@ -18,6 +18,9 @@ public class DatabaseUIController : MonoBehaviour
     public GameObject mainPage;
     public GameObject createSpellSubPage; //Also used to edit spells
 
+    public Spell spellBeingDisplayed;
+    public GameObject spellStatsDisplayer; //The parent obj for the UI elements used to display a spell's stats in the Spells page
+
     public bool isTransitioning;
 
     public void updateSpellsDatabase()
@@ -66,6 +69,12 @@ public class DatabaseUIController : MonoBehaviour
             currentlyOpenPage = page;
             page.SetActive(true);
         }
+    }
+
+    public void openPageSetVar(GameObject subPageVar) //Used to set the 'currentlyOpenSubPage' var to the main page of a page when opened
+    {
+        currentlyOpenSubPage = subPageVar;
+        subPageVar.SetActive(true);
     }
 
     public void openSpecificSubPage(GameObject page) //Ex: Tabs inside of the Create page
@@ -195,5 +204,31 @@ public class DatabaseUIController : MonoBehaviour
 
         //Saves spell
         GetComponent<DatabaseManager>().srdSpells.Add(spell);
+        currentlyOpenSubPage.SetActive(false);
+        currentlyOpenSubPage = null;
+        gameController.GetComponent<GameController>().messageDisplayer("Spell '" + spell.name + "' Added", 3f);
+        addToSRDSpellsScrollView(spell);
+    }
+
+    public void displaySpellStats(Spell spell)
+    {
+        spellBeingDisplayed = spell;
+        spellStatsDisplayer.transform.GetChild(0).GetComponent<Text>().text = spell.name;
+        spellStatsDisplayer.transform.GetChild(1).GetComponent<Text>().text = spell.description;
+        spellStatsDisplayer.transform.GetChild(2).GetComponent<Text>().text = "School: " + spell.school;
+        spellStatsDisplayer.transform.GetChild(3).GetComponent<Text>().text = "Saving Throw: " + spell.savingThrow;
+        spellStatsDisplayer.transform.GetChild(4).GetComponent<Text>().text = "Range: " + spell.range;
+        spellStatsDisplayer.transform.GetChild(5).GetComponent<Text>().text = "Ritual: " + spell.isRitual;
+        spellStatsDisplayer.transform.GetChild(6).GetComponent<Text>().text = "Concentration: " + spell.cComponent;
+        spellStatsDisplayer.transform.GetChild(7).GetComponent<Text>().text = "Components: ";
+        if (spell.vComponent)
+            spellStatsDisplayer.transform.GetChild(7).GetComponent<Text>().text += "Verbal, ";
+        if (spell.sComponent)
+            spellStatsDisplayer.transform.GetChild(7).GetComponent<Text>().text += "Semantic, ";
+        if (spell.mComponentDescription != "")
+            spellStatsDisplayer.transform.GetChild(7).GetComponent<Text>().text += "Material (" + spell.mComponentDescription + ")";
+        spellStatsDisplayer.transform.GetChild(8).GetComponent<Text>().text = "Damage: " + spell.baseNumberOfDamageDice + "d" + spell.typeOfDamageDice + ", increases by " + spell.diceNumberSpellSlotIncrease + "d" + spell.typeOfDiceSpellSlotIncrease;
+        spellStatsDisplayer.transform.GetChild(9).GetComponent<Text>().text = "Casting Time: " + spell.castingTime + " " + spell.castingTimeUnit;
+        spellStatsDisplayer.transform.GetChild(10).GetComponent<Text>().text = "Duration: " + spell.duration + " " + spell.durationUnit;
     }
 }
