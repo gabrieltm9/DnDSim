@@ -17,6 +17,7 @@ public class DatabaseUIController : MonoBehaviour
 
     public GameObject mainPage;
     public GameObject createSpellSubPage; //Also used to edit spells
+    public GameObject createSpellSubPageBackup; //Used to reset the create spell sub page between uses
 
     public Spell spellBeingDisplayed;
     public GameObject spellStatsDisplayer; //The parent obj for the UI elements used to display a spell's stats in the Spells page
@@ -107,7 +108,7 @@ public class DatabaseUIController : MonoBehaviour
         mainPage.SetActive(true);
     }
 
-    public void saveSpellToDatabase()
+    public void saveSpellToDatabase(GameObject pageToOpenAfterSaving)
     {
         int temp;
         //Creates spell
@@ -204,8 +205,7 @@ public class DatabaseUIController : MonoBehaviour
 
         //Saves spell
         GetComponent<DatabaseManager>().srdSpells.Add(spell);
-        currentlyOpenSubPage.SetActive(false);
-        currentlyOpenSubPage = null;
+        openSpecificSubPage(pageToOpenAfterSaving);
         gameController.GetComponent<GameController>().messageDisplayer("Spell '" + spell.name + "' Added", 3f);
         addToSRDSpellsScrollView(spell);
     }
@@ -230,5 +230,13 @@ public class DatabaseUIController : MonoBehaviour
         spellStatsDisplayer.transform.GetChild(8).GetComponent<Text>().text = "Damage: " + spell.baseNumberOfDamageDice + "d" + spell.typeOfDamageDice + ", increases by " + spell.diceNumberSpellSlotIncrease + "d" + spell.typeOfDiceSpellSlotIncrease;
         spellStatsDisplayer.transform.GetChild(9).GetComponent<Text>().text = "Casting Time: " + spell.castingTime + " " + spell.castingTimeUnit;
         spellStatsDisplayer.transform.GetChild(10).GetComponent<Text>().text = "Duration: " + spell.duration + " " + spell.durationUnit;
+    }
+
+    public void resetCreateSpellsPage()
+    {
+        GameObject obj = Instantiate(createSpellSubPageBackup, createSpellSubPage.transform.parent);
+        Destroy(createSpellSubPage);
+        createSpellSubPage = obj;
+        createSpellSubPage.SetActive(true);
     }
 }
