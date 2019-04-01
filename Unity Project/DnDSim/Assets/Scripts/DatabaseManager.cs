@@ -16,7 +16,7 @@ public class DatabaseManager : MonoBehaviour {
         //XMLSerializer.Serialize(srdSpells, Application.persistentDataPath + @"/Spells/srdspells.xml");
 
         loadSpellFiles();
-        GetComponent<DatabaseUIController>().updateSpellsDatabase();
+        //GetComponent<DatabaseUIController>().updateSpellsDatabase();
     }
 
     public void loadSpellFiles()

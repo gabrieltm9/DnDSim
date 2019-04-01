@@ -12,10 +12,15 @@ public class GameController : MonoBehaviour {
 
     public static bool isMainUIOpen = true;
     public static GameObject mainUI;
+
     public static bool isCharacterSheetUIOpen;
     public GameObject characterSheetUI;
+
     public bool isDatabaseUIOpen;
     public GameObject databaseUI;
+
+    public bool isSimulationOpen;
+    public GameObject simulationUI;
 
     public GameObject messageDisplayerObj;
 
@@ -94,6 +99,26 @@ public class GameController : MonoBehaviour {
                 databaseUI.GetComponent<Animator>().Play("FadeOut");
                 uiObjToDisable = databaseUI;
                 //databaseUI.GetComponent<CharacterSheetController>().particleSys.GetComponent<ParticleSystem>().Stop();
+            }
+            startTransitioning = true;
+        }
+    }
+
+    public void toggleSimulationUI()
+    {
+        if (!isTransitioning)
+        {
+            isSimulationOpen = !isSimulationOpen;
+            if (isSimulationOpen)
+            {
+                simulationUI.SetActive(true);
+                simulationUI.GetComponent<Animator>().Play("FadeIn");
+                simulationUI.GetComponent<SimulationManager>().openSimulationUI();
+            }
+            else
+            {
+                simulationUI.GetComponent<Animator>().Play("FadeOut");
+                uiObjToDisable = simulationUI;
             }
             startTransitioning = true;
         }
